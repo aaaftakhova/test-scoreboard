@@ -38,9 +38,16 @@ public class Game {
     }
 
     public void updateScore(int homeTeamScore, int awayTeamScore) {
-        // TODO validity checks
-        this.homeTeamScore = homeTeamScore;
-        this.awayTeamScore = awayTeamScore;
+        if (homeTeamScore < 0 || awayTeamScore < 0
+                || homeTeamScore < this.homeTeamScore || awayTeamScore < this.homeTeamScore) {
+            throw new IllegalArgumentException("Score may not be negative or smaller than previous score!");
+        }
+        if (homeTeamScore != this.homeTeamScore) {
+            this.homeTeamScore = homeTeamScore;
+        }
+        if (awayTeamScore != this.awayTeamScore) {
+            this.awayTeamScore = awayTeamScore;
+        }
     }
 
     public int getTotalScore() {

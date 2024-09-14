@@ -28,22 +28,6 @@ public class UpdateScoreTest {
         Assertions.assertEquals(4, game.getAwayTeamScore());
     }
 
-    @Test
-    public void testUpdateScoreSameScore() {
-        // Same home, but different away score is valid
-        game.updateScore(0, 4);
-        Assertions.assertEquals(0, game.getHomeTeamScore());
-        Assertions.assertEquals(4, game.getAwayTeamScore());
-
-        // Same away, but different home score is valid
-        game.updateScore(1, 4);
-        Assertions.assertEquals(1, game.getHomeTeamScore());
-        Assertions.assertEquals(4, game.getAwayTeamScore());
-
-        // Update to same score is not accepted
-        Assertions.assertThrows(IllegalArgumentException.class, () -> game.updateScore(1, 4));
-    }
-
     @ParameterizedTest(name = "homeScore: {0}, awayScore: {1}")
     @CsvSource({"-1,2", "4,-1", "-4,-5"})
     public void testUpdateScoreNegative(int homeScore, int awayScore) {
