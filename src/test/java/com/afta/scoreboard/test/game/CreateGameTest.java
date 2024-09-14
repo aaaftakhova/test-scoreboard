@@ -17,17 +17,6 @@ public class CreateGameTest {
 
         Assertions.assertEquals(TEAM_A, game.getHomeTeam());
         Assertions.assertEquals(TEAM_B, game.getAwayTeam());
-        Assertions.assertNotNull(game.getGameStart());
-    }
-
-    @Test
-    public void testCreateSecondGameStartTime() {
-        Game game1 = new Game(TEAM_A, TEAM_B);
-        Game game2 = new Game(TEAM_A, TEAM_B);
-
-        System.out.println(game1.getGameStart());
-        System.out.println(game2.getGameStart());
-        Assertions.assertTrue(game2.getGameStart().isAfter(game1.getGameStart()));
     }
 
     @Test

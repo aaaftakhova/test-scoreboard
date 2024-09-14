@@ -1,10 +1,11 @@
 package com.afta.scoreboard.entity;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Scoreboard {
-    private final List<Game> activeGames = new ArrayList<>();
+    private final List<Game> activeGames = new LinkedList<>();
 
     public void startGame(String homeTeam, String awayTeam) {
         // TODO implement

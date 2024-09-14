@@ -1,20 +1,23 @@
 package com.afta.scoreboard.entity;
 
-import java.time.Instant;
+import com.afta.scoreboard.util.StringUtils;
 
 public class Game {
 
     private String homeTeam;
     private String awayTeam;
-    private Instant gameStart;
     private int homeTeamScore;
     private int awayTeamScore;
 
     public Game(String homeTeam, String awayTeam) {
-        // TODO validity checks
+        if (StringUtils.isNullEmptyOrBlank(homeTeam) || StringUtils.isNullEmptyOrBlank(awayTeam)) {
+            throw new IllegalArgumentException("Team name may not be null empty or blank!");
+        }
+        if (homeTeam.equals(awayTeam)) {
+            throw new IllegalArgumentException("Home and away team name may not be equal!");
+        }
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
-        this.gameStart = Instant.now();
     }
 
 
@@ -24,10 +27,6 @@ public class Game {
 
     public String getAwayTeam() {
         return awayTeam;
-    }
-
-    public Instant getGameStart() {
-        return gameStart;
     }
 
     public int getHomeTeamScore() {
