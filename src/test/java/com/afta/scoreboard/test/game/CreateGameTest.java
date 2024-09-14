@@ -8,9 +8,8 @@ import org.junit.jupiter.params.provider.*;
 
 public class CreateGameTest {
 
-    final static String TEAM_A = "Team A";
-    final static String TEAM_B = "Team B";
-    final static String BLANK = "";
+    private final static String TEAM_A = "Team A";
+    private final static String TEAM_B = "Team B";
 
     @Test
     public void testCreateGameSuccessfully() {

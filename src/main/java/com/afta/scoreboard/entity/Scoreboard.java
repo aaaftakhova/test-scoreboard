@@ -1,4 +1,4 @@
-package com.afta.scoreboard;
+package com.afta.scoreboard.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,4 +19,8 @@ public class Scoreboard {
         return activeGames;
     }
 
+    public void updateGameScore(String homeTeam, String awayTeam, int homeScore, int awayScore) {
+        // TODO implement
+
+    }
 }

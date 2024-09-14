@@ -29,7 +29,7 @@ public class UpdateScoreTest {
     }
 
     @Test
-    public void testUpdateScoreSameScore(int homeScore, int awayScore) {
+    public void testUpdateScoreSameScore() {
         // Same home, but different away score is valid
         game.updateScore(0, 4);
         Assertions.assertEquals(0, game.getHomeTeamScore());
