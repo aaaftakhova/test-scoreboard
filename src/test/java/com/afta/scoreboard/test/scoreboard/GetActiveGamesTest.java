@@ -49,8 +49,8 @@ public class GetActiveGamesTest {
         // Expected order: A - B, C - D, E - F
         List<Game> activeGames = scoreboard.getActiveGames();
         Assertions.assertEquals(3, activeGames.size());
-        Assertions.assertEquals(TEAM_E, activeGames.get(0).getHomeTeam());
+        Assertions.assertEquals(TEAM_A, activeGames.get(0).getHomeTeam());
         Assertions.assertEquals(TEAM_C, activeGames.get(1).getHomeTeam());
-        Assertions.assertEquals(TEAM_A, activeGames.get(2).getHomeTeam());
+        Assertions.assertEquals(TEAM_E, activeGames.get(2).getHomeTeam());
     }
 }
