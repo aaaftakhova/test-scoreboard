@@ -6,23 +6,26 @@ import java.util.stream.Stream;
 
 
 public class Scoreboard {
-    private final Map<Integer, Game> activeGames = new LinkedHashMap<>();
+    private final LinkedList<Game> activeGames = new LinkedList<>();
 
     public void startGame(String homeTeam, String awayTeam) {
         Game game = new Game(homeTeam, awayTeam);
-        if (isTeamAlreadyPlaying(homeTeam) || isTeamAlreadyPlaying(awayTeam)) {
-            throw new IllegalArgumentException("Multiple simultaneous matches are not allowed for the same team!");
+        if (isTeamAlreadyPlaying(homeTeam)) {
+            throw new IllegalArgumentException(String.format("Team %s is already playing!", homeTeam));
         }
-        activeGames.put(game.hashCode(), game);
+        if (isTeamAlreadyPlaying(awayTeam)) {
+            throw new IllegalArgumentException(String.format("Team %s is already playing!", awayTeam));
+        }
+        activeGames.addFirst(game);
     }
 
     public void finishGame(String homeTeam, String awayTeam) {
         Game game = new Game(homeTeam, awayTeam);
-        activeGames.remove(game.hashCode());
+        activeGames.remove(game);
     }
 
     public List<Game> getActiveGames() {
-        return activeGames.values().stream().sorted(
+        return activeGames.stream().sorted(
                 Comparator.reverseOrder()
         ).collect(Collectors.toList());
     }
@@ -30,13 +33,13 @@ public class Scoreboard {
     public void updateGameScore(String homeTeam, String awayTeam, int homeScore, int awayScore) {
         Game game = new Game(homeTeam, awayTeam);
 
-        Optional.ofNullable(activeGames.get(game.hashCode()))
+        activeGames.stream().filter(g -> g.equals(game)).findAny()
                 .ifPresentOrElse(g -> g.updateScore(homeScore, awayScore),
                         () -> {throw new NoSuchElementException("No such game found in the scoreboard!");});
     }
 
     private boolean isTeamAlreadyPlaying(String team) {
-        return activeGames.values().stream().flatMap(game -> Stream.of(game.getHomeTeam(), game.getAwayTeam()))
+        return activeGames.stream().flatMap(game -> Stream.of(game.getHomeTeam(), game.getAwayTeam()))
                 .anyMatch(t -> t.equals(team));
     }
 }

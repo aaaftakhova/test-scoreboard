@@ -61,15 +61,13 @@ public class Game implements Comparable<Game> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return homeTeamScore == game.homeTeamScore
-                && awayTeamScore == game.awayTeamScore
-                && Objects.equals(homeTeam, game.homeTeam)
+        return Objects.equals(homeTeam, game.homeTeam)
                 && Objects.equals(awayTeam, game.awayTeam);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(homeTeam, awayTeam, homeTeamScore, awayTeamScore);
+        return Objects.hash(homeTeam, awayTeam);
     }
 
     @Override

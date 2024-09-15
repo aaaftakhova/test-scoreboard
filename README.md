@@ -13,8 +13,29 @@ The scoreboard supports the following operations:
    team score.
 3. Finish game currently in progress. This removes a match from the scoreboard.
 4. Get a summary of games in progress ordered by their total score. The games with the same
+   total score will be returned ordered by the most recently started match in the scoreboard.
 
 ### Approach
 
 1. Start as simple as possible, creating just the essentials.
 1. Define the test cases in the test classes.
+1. Implement the test cases
+1. During test cases implementation some refactoring was done. 
+   
+   For the cause of the simplicity some cases have been eliminated:
+   
+   * If the game has already been started the start game method has no effect instead of throwing an exception
+   * Update score method has no effect if caller tries to update score to the same score. No exception is thrown.
+   
+   Added additional test cases & logic:
+   * Disallow same team to be the home & away team at the same game.
+   * Disallow the team to play multiple game simultaneously
+   custom business exceptions
+#### Sorting concept
+1. Original idea was to have a start time attribute at the Game.class which is automatically set to the current instant when game is created & started at the scoreboard. 
+Then it would be easy to sort the games by their start time when necessary.
+   However, the written tests have shown, that Instant class is unable to capture the time difference between the match starts, when they are created right after another.
+   So this approach has the accuracy limitation and can become inefficient if the scoreboard needs to start matches in a short period of time.
+   
+1. Another approach is to use the data structure that preserves the insertion order.
+
