@@ -7,6 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
+/**
+ * JUnit test to test the start game functionality of the {@link Scoreboard} class
+ */
 public class StartGameTest {
     final static String TEAM_A = "Team A";
     final static String TEAM_B = "Team B";

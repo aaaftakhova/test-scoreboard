@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
+/**
+ * JUnit test to test constructor of the {@link Game} class
+ */
 public class CreateGameTest {
 
     private final static String TEAM_A = "Team A";

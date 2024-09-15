@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+/**
+ * JUnit test to test the get active games functionality of the {@link Scoreboard} class
+ */
 public class GetActiveGamesTest {
 
     private final static String TEAM_A = "Team A";
@@ -28,29 +31,29 @@ public class GetActiveGamesTest {
     @Test
     public void testGetActiveGamesSortedByTotalScore() {
         setUpScoreboard();
-        scoreboard.updateGameScore(TEAM_C, TEAM_D, 2, 3);
-        scoreboard.updateGameScore(TEAM_A, TEAM_B, 1, 1);
-        scoreboard.updateGameScore(TEAM_E, TEAM_F, 3, 3);
+        scoreboard.updateGameScore(TEAM_E, TEAM_F, 1, 1);
+        scoreboard.updateGameScore(TEAM_C, TEAM_D, 3, 3);
+        scoreboard.updateGameScore(TEAM_A, TEAM_B, 2, 3);
 
-        // Expected order: E - F, C - D, A - B
+        // Expected order: C - D (6), A - B (5), E - F (2) - highest total score first
         List<Game> activeGames = scoreboard.getActiveGames();
-        Assertions.assertEquals(TEAM_E, activeGames.get(0).getHomeTeam());
-        Assertions.assertEquals(TEAM_C, activeGames.get(1).getHomeTeam());
-        Assertions.assertEquals(TEAM_A, activeGames.get(2).getHomeTeam());
+        Assertions.assertEquals(TEAM_C, activeGames.get(0).getHomeTeam());
+        Assertions.assertEquals(TEAM_A, activeGames.get(1).getHomeTeam());
+        Assertions.assertEquals(TEAM_E, activeGames.get(2).getHomeTeam());
     }
 
     @Test
     public void testGetActiveGamesSortedByStartTime() {
         setUpScoreboard();
-        scoreboard.updateGameScore(TEAM_E, TEAM_F, 3, 3);
         scoreboard.updateGameScore(TEAM_C, TEAM_D, 2, 4);
+        scoreboard.updateGameScore(TEAM_E, TEAM_F, 3, 3);
         scoreboard.updateGameScore(TEAM_A, TEAM_B, 5, 1);
 
-        // Expected order: A - B, C - D, E - F
+        // Expected order: E - F, C - D, A - B - most recent game first
         List<Game> activeGames = scoreboard.getActiveGames();
         Assertions.assertEquals(3, activeGames.size());
-        Assertions.assertEquals(TEAM_A, activeGames.get(0).getHomeTeam());
+        Assertions.assertEquals(TEAM_E, activeGames.get(0).getHomeTeam());
         Assertions.assertEquals(TEAM_C, activeGames.get(1).getHomeTeam());
-        Assertions.assertEquals(TEAM_E, activeGames.get(2).getHomeTeam());
+        Assertions.assertEquals(TEAM_A, activeGames.get(2).getHomeTeam());
     }
 }

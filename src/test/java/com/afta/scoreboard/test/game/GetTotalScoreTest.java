@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * JUnit test to test the get total score functionality of the {@link Game} class
+ */
 public class GetTotalScoreTest {
 
     private Game game;
