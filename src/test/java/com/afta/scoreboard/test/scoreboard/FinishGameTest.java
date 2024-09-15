@@ -9,7 +9,7 @@ public class FinishGameTest {
     final static String TEAM_A = "Team A";
     final static String TEAM_B = "Team B";
 
-    private Scoreboard scoreboard = new Scoreboard();
+    private Scoreboard scoreboard;
 
     @BeforeEach
     public void setUp() {

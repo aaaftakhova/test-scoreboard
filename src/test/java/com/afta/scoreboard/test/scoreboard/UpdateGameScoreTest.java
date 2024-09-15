@@ -3,14 +3,12 @@ package com.afta.scoreboard.test.scoreboard;
 import com.afta.scoreboard.entity.Game;
 import com.afta.scoreboard.entity.Scoreboard;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
 import java.util.NoSuchElementException;
-import java.util.stream.Stream;
 
 public class UpdateGameScoreTest {
 

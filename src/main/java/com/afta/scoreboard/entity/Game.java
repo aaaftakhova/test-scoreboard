@@ -1,23 +1,22 @@
 package com.afta.scoreboard.entity;
 
-import com.afta.scoreboard.util.StringUtils;
+import com.afta.scoreboard.util.GameValidator;
 
 import java.util.Objects;
 
 public class Game implements Comparable<Game> {
 
-    private String homeTeam;
-    private String awayTeam;
+    final private GameValidator validator = new GameValidator();
+
+    private final String homeTeam;
+    private final String awayTeam;
     private int homeTeamScore;
     private int awayTeamScore;
 
     public Game(String homeTeam, String awayTeam) {
-        if (StringUtils.isNullEmptyOrBlank(homeTeam) || StringUtils.isNullEmptyOrBlank(awayTeam)) {
-            throw new IllegalArgumentException("Team name may not be null empty or blank!");
-        }
-        if (homeTeam.equals(awayTeam)) {
-            throw new IllegalArgumentException("Home and away team name may not be equal!");
-        }
+        validator.checkTeamNameIsValid(homeTeam);
+        validator.checkTeamNameIsValid(awayTeam);
+        validator.checkForSelfGame(homeTeam, awayTeam);
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
     }
@@ -40,16 +39,11 @@ public class Game implements Comparable<Game> {
     }
 
     public void updateScore(int homeTeamScore, int awayTeamScore) {
-        if (homeTeamScore < 0 || awayTeamScore < 0
-                || homeTeamScore < this.homeTeamScore || awayTeamScore < this.homeTeamScore) {
-            throw new IllegalArgumentException("Score may not be negative or smaller than previous score!");
-        }
-        if (homeTeamScore != this.homeTeamScore) {
-            this.homeTeamScore = homeTeamScore;
-        }
-        if (awayTeamScore != this.awayTeamScore) {
-            this.awayTeamScore = awayTeamScore;
-        }
+        validator.checkScoreIsValid(this.homeTeamScore, homeTeamScore);
+        validator.checkScoreIsValid(this.awayTeamScore, awayTeamScore);
+
+        if (homeTeamScore != this.homeTeamScore) { this.homeTeamScore = homeTeamScore; }
+        if (awayTeamScore != this.awayTeamScore) { this.awayTeamScore = awayTeamScore; }
     }
 
     public int getTotalScore() {
