@@ -2,7 +2,9 @@ package com.afta.scoreboard.entity;
 
 import com.afta.scoreboard.util.StringUtils;
 
-public class Game {
+import java.util.Objects;
+
+public class Game implements Comparable<Game> {
 
     private String homeTeam;
     private String awayTeam;
@@ -54,4 +56,24 @@ public class Game {
         return homeTeamScore + awayTeamScore;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return homeTeamScore == game.homeTeamScore
+                && awayTeamScore == game.awayTeamScore
+                && Objects.equals(homeTeam, game.homeTeam)
+                && Objects.equals(awayTeam, game.awayTeam);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(homeTeam, awayTeam, homeTeamScore, awayTeamScore);
+    }
+
+    @Override
+    public int compareTo(Game o) {
+        return Integer.compare(this.getTotalScore(), o.getTotalScore());
+    }
 }

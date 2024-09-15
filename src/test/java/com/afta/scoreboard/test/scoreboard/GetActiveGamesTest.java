@@ -27,6 +27,7 @@ public class GetActiveGamesTest {
 
     @Test
     public void testGetActiveGamesSortedByTotalScore() {
+        setUpScoreboard();
         scoreboard.updateGameScore(TEAM_C, TEAM_D, 2, 3);
         scoreboard.updateGameScore(TEAM_A, TEAM_B, 1, 1);
         scoreboard.updateGameScore(TEAM_E, TEAM_F, 3, 3);
@@ -34,12 +35,13 @@ public class GetActiveGamesTest {
         // Expected order: E - F, C - D, A - B
         List<Game> activeGames = scoreboard.getActiveGames();
         Assertions.assertEquals(TEAM_E, activeGames.get(0).getHomeTeam());
-        Assertions.assertEquals(TEAM_C, activeGames.get(0).getHomeTeam());
-        Assertions.assertEquals(TEAM_A, activeGames.get(0).getHomeTeam());
+        Assertions.assertEquals(TEAM_C, activeGames.get(1).getHomeTeam());
+        Assertions.assertEquals(TEAM_A, activeGames.get(2).getHomeTeam());
     }
 
     @Test
     public void testGetActiveGamesSortedByStartTime() {
+        setUpScoreboard();
         scoreboard.updateGameScore(TEAM_E, TEAM_F, 3, 3);
         scoreboard.updateGameScore(TEAM_C, TEAM_D, 2, 4);
         scoreboard.updateGameScore(TEAM_A, TEAM_B, 5, 1);
@@ -48,7 +50,7 @@ public class GetActiveGamesTest {
         List<Game> activeGames = scoreboard.getActiveGames();
         Assertions.assertEquals(3, activeGames.size());
         Assertions.assertEquals(TEAM_E, activeGames.get(0).getHomeTeam());
-        Assertions.assertEquals(TEAM_C, activeGames.get(0).getHomeTeam());
-        Assertions.assertEquals(TEAM_A, activeGames.get(0).getHomeTeam());
+        Assertions.assertEquals(TEAM_C, activeGames.get(1).getHomeTeam());
+        Assertions.assertEquals(TEAM_A, activeGames.get(2).getHomeTeam());
     }
 }

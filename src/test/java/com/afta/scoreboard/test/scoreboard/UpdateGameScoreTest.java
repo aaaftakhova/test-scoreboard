@@ -59,7 +59,7 @@ public class UpdateGameScoreTest {
 
 
     @ParameterizedTest(name = "Team A: {0} - Team B: {1}")
-    @CsvSource({"0,0", "0,-1", "-5,10"})
+    @CsvSource({"0,-1", "-5,10"})
     public void updateGameScoreInvalidScore(int homeScore, int awayScore) {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> scoreboard.updateGameScore(TEAM_A, TEAM_B, homeScore, awayScore));

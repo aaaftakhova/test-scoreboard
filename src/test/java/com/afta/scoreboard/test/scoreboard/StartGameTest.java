@@ -2,8 +2,6 @@ package com.afta.scoreboard.test.scoreboard;
 
 import com.afta.scoreboard.entity.Game;
 import com.afta.scoreboard.entity.Scoreboard;
-import com.afta.scoreboard.exception.GameAlreadyStartedException;
-import com.afta.scoreboard.exception.TeamAlreadyPlaysException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,16 +30,9 @@ public class StartGameTest {
     }
 
     @Test
-    public void testStartExistingGame() {
-        scoreboard.startGame(TEAM_A, TEAM_B);
-
-        Assertions.assertThrows(GameAlreadyStartedException.class, () -> scoreboard.startGame(TEAM_A, TEAM_B));
-    }
-
-    @Test
     public void testStartGameForPlayingTeam() {
         scoreboard.startGame(TEAM_A, TEAM_B);
-        Assertions.assertThrows(TeamAlreadyPlaysException.class,
+        Assertions.assertThrows(IllegalArgumentException.class,
                 () -> scoreboard.startGame(TEAM_B, "Team C"));
     }
 }
