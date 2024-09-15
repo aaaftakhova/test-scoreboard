@@ -10,6 +10,9 @@ import org.junit.jupiter.params.provider.*;
 
 import java.util.NoSuchElementException;
 
+/**
+ * JUnit test to test the update game score functionality of the {@link Scoreboard} class
+ */
 public class UpdateGameScoreTest {
 
     private final static String TEAM_A = "Team A";

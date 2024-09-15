@@ -4,6 +4,9 @@ import com.afta.scoreboard.util.GameValidator;
 
 import java.util.Objects;
 
+/**
+ * Entity class representing a scoreboard game
+ */
 public class Game implements Comparable<Game> {
 
     final private GameValidator validator = new GameValidator();
@@ -13,6 +16,13 @@ public class Game implements Comparable<Game> {
     private int homeTeamScore;
     private int awayTeamScore;
 
+    /**
+     * Constructor
+     * @param homeTeam home team name
+     * @param awayTeam away team name
+     * @throws IllegalArgumentException if a team name is null, blank or empty
+     * @throws IllegalArgumentException if same team name is given for a home & away team
+     */
     public Game(String homeTeam, String awayTeam) {
         validator.checkTeamNameIsValid(homeTeam);
         validator.checkTeamNameIsValid(awayTeam);
@@ -38,6 +48,13 @@ public class Game implements Comparable<Game> {
         return awayTeamScore;
     }
 
+    /**
+     * Updates the score of the game entity.
+     * If score hasn't changed nothing happens
+     * @param homeTeamScore new home team score as absolute value
+     * @param awayTeamScore new away team score as absolute value
+     * @throws IllegalArgumentException if the given score is a negative number or is lower than previous score value
+     */
     public void updateScore(int homeTeamScore, int awayTeamScore) {
         validator.checkScoreIsValid(this.homeTeamScore, homeTeamScore);
         validator.checkScoreIsValid(this.awayTeamScore, awayTeamScore);
@@ -46,6 +63,10 @@ public class Game implements Comparable<Game> {
         if (awayTeamScore != this.awayTeamScore) { this.awayTeamScore = awayTeamScore; }
     }
 
+    /**
+     * Getter for the total game score calculated as a sum of home and away teams' scores
+     * @return home team score + away team score
+     */
     public int getTotalScore() {
         return homeTeamScore + awayTeamScore;
     }

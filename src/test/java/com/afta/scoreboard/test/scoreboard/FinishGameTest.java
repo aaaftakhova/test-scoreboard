@@ -1,10 +1,14 @@
 package com.afta.scoreboard.test.scoreboard;
 
+import com.afta.scoreboard.entity.Game;
 import com.afta.scoreboard.entity.Scoreboard;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * JUnit test to test the finish game functionality of the {@link Scoreboard} class
+ */
 public class FinishGameTest {
     final static String TEAM_A = "Team A";
     final static String TEAM_B = "Team B";

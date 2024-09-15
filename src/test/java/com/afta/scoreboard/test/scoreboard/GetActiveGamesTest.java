@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+/**
+ * JUnit test to test the get active games functionality of the {@link Scoreboard} class
+ */
 public class GetActiveGamesTest {
 
     private final static String TEAM_A = "Team A";

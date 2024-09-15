@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+/**
+ * JUnit test to test the update score functionality of the {@link Game} class
+ */
 public class UpdateScoreTest {
 
     private Game game;
